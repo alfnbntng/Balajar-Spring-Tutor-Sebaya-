@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/data_siswa")
+@RequestMapping("/belajar-spring/api/siswa")
 public class SIswaController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class SIswaController {
         return new ResponseEntity<>(siswaModels, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/by-id/{id}")
     public ResponseEntity<SiswaModel> getById(@PathVariable Long id) {
         Optional<SiswaModel> siswaModelOptional = siswaService.getById(id);
         return siswaModelOptional.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
@@ -36,7 +36,7 @@ public class SIswaController {
         return new ResponseEntity<>(newData, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/ubah/{id}")
     public ResponseEntity<SiswaModel> updateData(@PathVariable Long id, @RequestBody SiswaModel ubahSiswa) {
         SiswaModel putSiswa = siswaService.updateData(id, ubahSiswa);
         return new ResponseEntity<>(putSiswa, HttpStatus.OK);
